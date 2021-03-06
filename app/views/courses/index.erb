@@ -1,0 +1,18 @@
+<div class="content">
+  <% if AuthenticationHelper.logged_in?(session) %>
+    <p>Here are your courses, <%= AuthenticationHelper.current_user(session).first_name %>!</p>
+    <table>
+      <tr><h1>Courses</h1></tr>
+      <% Course.all.each do |course| %>
+        <% if course.teacher_id == AuthenticationHelper.current_user(session).id %>
+          <tr><a href='/courses/<%= course.id %>'><%= course.name %></a></tr>
+        <% end %>
+      <% end %>
+    </table>
+    <a href='/courses/new'>Add</a>
+  <% else %>
+    <p>There has been an error. Please return to the <a href='/'>homepage</a>.</p>
+  <% end %>
+  <a href='/'>Home</aa>
+  <a href='/logout'>Logout</a>
+</div>
