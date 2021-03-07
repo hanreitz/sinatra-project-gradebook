@@ -1,13 +1,14 @@
 <div class="content">
 <% if AuthenticationHelper.logged_in?(session) && AuthenticationHelper.current_user(session).id == @course.teacher.id %>
   <h2><%= @course.name %></h2>
-  <p>To edit, please use the buttons below the gradebook.</p>
+  <p>Click any assignment name to edit the assignment or its grades.</p>
+  <p>To add a new assignment or edit the coures, please use the buttons below the gradebook.</p>
   <table border="3">
     <thead>
       <th>Student</th>
       <% if @course.assignments %>
         <% @course.assignments.each do |assignment| %>
-          <th padding: 5px><%= assignment.name %></th>
+          <th><a href='/assignments/<%= assignment.id %>/edit'><%= assignment.name %></a></th>
         <% end %>
       <% end %>
     </thead>
@@ -22,7 +23,7 @@
       <% end %>
     <% end %>
   </table><br>
-  <button onclick="window.location.href='/courses/<%= @course.id %>/edit/grades';">Edit Grades</button>
+  <a href='/assignments/new'><button>Add Assignment</button></a>
   <button onclick="window.location.href='/courses/<%= @course.id %>/edit';">Edit Course</button><br><br>
 <% else %>
   <p>ERROR: You must be logged in and own this course to view this page.</p>
