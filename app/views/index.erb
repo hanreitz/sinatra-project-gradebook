@@ -5,9 +5,9 @@
     <div class="content">
       <% if AuthenticationHelper.logged_in?(session) %>
         <h2>Welcome back to Sinatra Gradebook, <%= AuthenticationHelper.current_user(session).first_name %> <%= AuthenticationHelper.current_user(session).last_name %>!</h2>
-        <form action='/courses' method="GET">
-          <input type="submit" value="My Courses">
-        </form><br>
+        <a href='/courses'><button>My Courses</button></a>
+        <a href='/edit'><button>Edit My Account</button></a>
+        <a href='/delete'><button><Delete My Account</button></a>
       <% else %>
         <h2>Welcome to Sinatra Gradebook!</h2>
         <p>Login or signup by clicking in the navigation bar below.</p>
