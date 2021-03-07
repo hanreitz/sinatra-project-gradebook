@@ -57,4 +57,17 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get '/:id/edit' do
+    @teacher = Teacher.find_by(id: params[:id])
+    erb :edit
+  end
+
+  delete '/:id' do
+    @teacher = Teacher.find_by(id: params[:id])
+    @teacher.destroy
+    session.clear
+    flash[:message] = "Account successfully removed."
+    redirect '/'
+  end
+
 end

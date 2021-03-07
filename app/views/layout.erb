@@ -24,15 +24,19 @@
 
       <%= yield %>
 
-      <footer class="branding">
-        <a href='/'>Home</a>
+      <div class="sidebar">
         <% if AuthenticationHelper.logged_in?(session) %>
-          <a href='/courses'>My Courses</a>
-          <a href='/logout'>Logout</a><br><br>
+          <a href='/'>My Account Home</a><br>
+          <a href='/courses'>My Courses</a><br>
+          <a href='/logout'>Logout</a><br>
         <% else %>
-          <a href='/login'>Login</a>
-          <a href='/signup'>Signup</a><br><br>
+          <a href='/'>Home</a><br>
+          <a href='/login'>Login</a><br>
+          <a href='/signup'>Signup</a><br>
         <% end %>
+      </div>
+
+      <footer class="branding">
         <small>&copy; 2021 <strong>SinatraProjectGradebook</strong></small>
       </footer>
     </div>
