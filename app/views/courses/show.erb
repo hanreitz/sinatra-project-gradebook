@@ -1,5 +1,5 @@
 <div class="content">
-<% if AuthenticationHelper.logged_in?(session) %>
+<% if AuthenticationHelper.logged_in?(session) && AuthenticationHelper.current_user(session).id == @course.teacher.id %>
   <h2><%= @course.name %></h2>
   <p>To edit, please use the buttons below the gradebook.</p>
   <table border="3">
@@ -25,6 +25,6 @@
   <button onclick="window.location.href='/courses/<%= @course.id %>/edit/grades';">Edit Grades</button>
   <button onclick="window.location.href='/courses/<%= @course.id %>/edit';">Edit Course</button><br><br>
 <% else %>
-  <p>There has been an error. You must be logged in to view this page.</p>
+  <p>ERROR: You must be logged in and own this course to view this page.</p>
 <% end %>
 </div>
