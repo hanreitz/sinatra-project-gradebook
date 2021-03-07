@@ -5,7 +5,7 @@
     <div class="content">
       <% if AuthenticationHelper.logged_in?(session) %>
         <h2>Welcome back to Sinatra Gradebook, <%= AuthenticationHelper.current_user(session).first_name %> <%= AuthenticationHelper.current_user(session).last_name %>!</h2>
-        <a href='/edit'><button>Edit My Account</button></a><br><br>
+        <a href='/<%= AuthenticationHelper.current_user(session).id %>/edit'><button>Edit My Account</button></a><br><br>
         <form action='/<%= AuthenticationHelper.current_user(session).id %>' method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="Delete My Account">

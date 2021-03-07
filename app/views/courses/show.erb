@@ -24,7 +24,11 @@
     <% end %>
   </table><br>
   <a href='/assignments/new'><button>Add Assignment</button></a>
-  <button onclick="window.location.href='/courses/<%= @course.id %>/edit';">Edit Course</button><br><br>
+  <a href='/courses/<%= @course.id %>/edit'><button>Edit Course</button></a><br><br>
+  <form action='/courses/<%= @course.id %>' method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Course">
+  </form><br>
 <% else %>
   <p>ERROR: You must be logged in and own this course to view this page.</p>
 <% end %>

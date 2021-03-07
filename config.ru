@@ -6,7 +6,7 @@ end
 
 use Rack::MethodOverride
 
-use AssignmentController
 use CourseController
+use AssignmentController
 use StudentController
 run ApplicationController

@@ -57,17 +57,38 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get '/:id' do
+    redirect to '/'
+  end
+
   get '/:id/edit' do
     @teacher = Teacher.find_by(id: params[:id])
     erb :edit
   end
 
+  patch '/:id' do
+    @teacher = Teacher.find_by(id: params[:id])
+    if @teacher.update(params[:teacher])
+      @teacher.update(params[:teacher])
+      flash[:message] = "Account succesfully updated!"
+      redirect to '/'
+    else
+      flash[:message] = "EDIT FAILED: All fields are required and email address must be valid."
+      redirect to '/'
+    end
+  end
+
   delete '/:id' do
     @teacher = Teacher.find_by(id: params[:id])
-    @teacher.destroy
-    session.clear
-    flash[:message] = "Account successfully removed."
-    redirect '/'
+    if @teacher.id == session[:user_id]
+      @teacher.destroy
+      session.clear
+      flash[:message] = "Account successfully removed."
+      redirect '/'
+    else
+      flash[:message] = "You do not have access to this function."
+      redirect '/'
+    end
   end
 
 end
