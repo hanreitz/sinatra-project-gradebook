@@ -19,16 +19,22 @@ class CourseController < ApplicationController
   end
 
   post '/courses' do
-    @course = Course.create(params[:course])
-    @course.teacher = Teacher.find_by(id: session[:user_id])
-    student = Student.new(params[:student])
-    if student.save
-      @course.students << student
-      @course.save
-      redirect to "/courses/#{@course.id}"
+    @course = Course.new(params[:course])
+    if @course.save
+      @course.teacher = Teacher.find_by(id: session[:user_id])
+      student = Student.new(params[:student])
+      if student.save
+        @course.students << student
+        @course.save
+        flash[:message] = "Course created successfully!"
+        redirect to "/courses/#{@course.id}"
+      else
+        @course.save
+        flash[:message] = "Course created! New student(s) could not be saved. Name field is required."
+        redirect to '/courses/new'
+      end
     else
-      flash[:message] = "New student(s) could not be saved. Name field is required."
-      redirect to '/courses/new'
+      flash[:message] = "COURSE NOT CREATED. Name field is required."
     end
   end
 
