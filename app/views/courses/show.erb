@@ -8,7 +8,7 @@
       <th>Student</th>
       <% if @course.assignments %>
         <% @course.assignments.each do |assignment| %>
-          <th><a href='/assignments/<%= assignment.id %>/edit'><%= assignment.name %></a></th>
+          <th><a href='/courses/<%= @course.id %>/assignments/<%= assignment.id %>'><%= assignment.name %></a></th>
         <% end %>
       <% end %>
     </thead>
@@ -23,7 +23,7 @@
       <% end %>
     <% end %>
   </table><br>
-  <a href='/assignments/new'><button>Add Assignment</button></a>
+  <a href='/courses/<%= @course.id %>/assignments/new'><button>Add Assignment</button></a>
   <a href='/courses/<%= @course.id %>/edit'><button>Edit Course</button></a><br><br>
   <form action='/courses/<%= @course.id %>' method="POST">
     <input type="hidden" name="_method" value="DELETE">

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h2><%= @course.name %> - Add an Assignment</h2>
+    <p>Please enter the information below to create a new assignment.</p>
+
+    <div class="content">
+      <form action='/courses/<%= @course.id %>/assignments' method="POST">
+        <input type="hidden" name="assignment[course_id]" value="<%= @course.id %>">
+        <label for="assignment[name]">Assignment Name:</label>
+        <input type="text" name="assignment[name]"><br><br>
+        <input type="submit" value="Create Assignment"><br>
+      </form><br>
+
+    </div>
+
+  </div>
+</div>

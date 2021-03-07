@@ -1,7 +1,7 @@
 <div class="content">
 <% if AuthenticationHelper.logged_in?(session) && AuthenticationHelper.current_user(session).id == @course.teacher.id %>
   <h2><%= @course.name %> - <%= @assignment.name %></h2>
-  <p>Use the Edit button to change grades or assignment name.</p>
+  <p>Use the Edit button to edit grades or assignment name.</p>
   <table border="3">
     <thead>
       <th>Student</th>
