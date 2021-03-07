@@ -1,10 +1,6 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
-    <% if flash.has?(:message) %>
-      <div class="flash">
-        <p><%= flash[:message] %></p>
-      </div>
-    <% end %>
+    
     <h2>Sign Up</h2>
     <p>Please enter the information below to sign up for a free Sinatra Gradebook account</p>
 
@@ -20,12 +16,6 @@
         <input type="password" name="password"><br><br>
         <input type="submit" value="Sign Up"><br>
       </form><br>
-
-      <% if @signup_failure %>
-        <div id="warning">
-        <%= @signup_failure %>
-        </div>
-      <% end %>
 
     </div>
 

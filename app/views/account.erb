@@ -1,7 +1,0 @@
-<div class="content">
-<% if AuthenticationHelper.logged_in?(session) %>
-  <p>Working on your account page, <%= AuthenticationHelper.current_user(session).first_name %>!</p>
-<% else %>
-  <p>There has been an error. Please return to the <a href='/'>homepage</a>.</p>
-<% end %>
-</div>

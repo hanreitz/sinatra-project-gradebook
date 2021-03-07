@@ -1,32 +1,30 @@
 <div class="content">
 <% if AuthenticationHelper.logged_in?(session) %>
-  <h1><%= @course.name %></h1>
-  <table>
-    <tr>
+  <h2><%= @course.name %></h2>
+  <p>To edit, please use the buttons below the gradebook.</p>
+  <table border="3">
+    <thead>
       <th>Student</th>
       <% if @course.assignments %>
         <% @course.assignments.each do |assignment| %>
-          <th><%= assignment.name %></th>
+          <th padding: 5px><%= assignment.name %></th>
         <% end %>
       <% end %>
-    </tr>
+    </thead>
     <% if @course.students %>
       <% @course.students.each do |student| %>
         <tr>
           <td><a href='/students/<%= student.id %>'><%= student.name %></a></td>
           <% student.student_assignments.joins(:assignment).where("assignments.course_id = ?", @course.id).order(:assignment_id).each do |sa| %>
-            <td><%= sa.grade %></td>
+            <td><%= sa.grade ||= "" %></td>
           <% end %>
         </tr>
       <% end %>
     <% end %>
-  </table>
-  <a href='/assignments/new'>Add Assignment</a>
-  <a href='/courses'>My Courses</a>
+  </table><br>
+  <button onclick="window.location.href='/courses/<%= @course.id %>/edit/grades';">Edit Grades</button>
+  <button onclick="window.location.href='/courses/<%= @course.id %>/edit';">Edit Course</button><br><br>
 <% else %>
-  <p>There has been an error. Please return to the <a href='/'>homepage</a>.</p>
+  <p>There has been an error. You must be logged in to view this page.</p>
 <% end %>
-<br><br>
-<a href='/'>Home</aa>
-<a href='/logout'>Logout</a>
 </div>

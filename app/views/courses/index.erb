@@ -1,18 +1,23 @@
 <div class="content">
   <% if AuthenticationHelper.logged_in?(session) %>
-    <p>Here are your courses, <%= AuthenticationHelper.current_user(session).first_name %>!</p>
-    <table>
-      <tr><h1>Courses</h1></tr>
-      <% Course.all.each do |course| %>
-        <% if course.teacher_id == AuthenticationHelper.current_user(session).id %>
-          <tr><a href='/courses/<%= course.id %>'><%= course.name %></a></tr>
-        <% end %>
+    <table border="3">
+      <thead>
+        <th><h3><%= AuthenticationHelper.current_user(session).first_name %> <%= AuthenticationHelper.current_user(session).last_name %>'s Courses</h3></th>
+      </thead>
+      <tr></tr>
+      <tr>
+        <td>Select a course to see its current gradebook.</td>
+      </tr>
+      <% AuthenticationHelper.current_user(session).courses.each do |course| %>
+        <tr>
+          <td><a href='/courses/<%= course.id %>'><%= course.name %></a></td>
+        </tr>
       <% end %>
-    </table>
-    <a href='/courses/new'>Add</a>
+    </table><br><br>
+    <form action='/courses/new' method="GET">
+      <input type="submit" value="Add New Course">
+    </form><br><br>
   <% else %>
-    <p>There has been an error. Please return to the <a href='/'>homepage</a>.</p>
+    <p>There has been an error. You must be logged in to view this page.</p>
   <% end %>
-  <a href='/'>Home</aa>
-  <a href='/logout'>Logout</a>
 </div>

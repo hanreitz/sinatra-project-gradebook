@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 6) do
   create_table "student_assignments", force: :cascade do |t|
     t.integer "student_id"
     t.integer "assignment_id"
-    t.float "grade"
+    t.string "grade"
   end
 
   create_table "student_courses", force: :cascade do |t|
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.integer "grade_level"
+    t.string "grade_level"
     t.string "contact_name"
     t.string "contact_phone"
   end

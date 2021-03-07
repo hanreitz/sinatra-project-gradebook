@@ -26,13 +26,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if params[:email] == "" || params[:password] == "" || params[:first_name] == "" || params[:last_name] == ""
-      flash[:message] = "Signup failed. All fields are required."
-      redirect to '/signup'
-    else
-      teacher = Teacher.create(params)
+    teacher = Teacher.new(params)
+    if teacher.save
+      teacher.save
       flash[:message] = "Signup succesful! Please login to continue."
       redirect to '/login'
+    else
+      flash[:message] = "Signup failed. All fields are required."
+      redirect to '/signup'
     end
   end
 
@@ -50,11 +51,6 @@ class ApplicationController < Sinatra::Base
       redirect to '/login'
     end
   end
-
-  # get '/account' do
-  #   @teacher = Teacher.find_by(id: session[:user_id])
-  #   erb :account
-  # end
 
   get '/logout' do
     session.clear

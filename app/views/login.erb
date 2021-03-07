@@ -1,10 +1,6 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
-    <% if flash.has?(:message) %>
-      <div class="flash">
-        <p><%= flash[:message] %></p>
-      </div>
-    <% end %>
+    
     <h2>Log In</h2>
     <p>Enter your email and password to log in.</p>
 
@@ -16,12 +12,6 @@
         <input type="password" name="password"><br><br>
         <input type="submit" value="Log In"><br>
       </form><br>
-
-      <% if @login_failure %>
-        <div id="warning">
-        <%= @login_failure %>
-        </div>
-      <% end %>
 
     </div>
 

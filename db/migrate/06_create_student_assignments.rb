@@ -3,7 +3,7 @@ class CreateStudentAssignments < ActiveRecord::Migration[6.0]
     create_table :student_assignments do |t|
       t.integer :student_id
       t.integer :assignment_id
-      t.float :grade
+      t.string :grade
     end
   end
 end

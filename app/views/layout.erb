@@ -15,10 +15,24 @@
   </head>
   <body>
     <div class="wrapper">
+    
+      <% if flash.has?(:message) %>
+        <div class="flash">
+          <p><%= flash[:message] %></p>
+        </div>
+      <% end %>
 
       <%= yield %>
 
       <footer class="branding">
+        <a href='/'>Home</a>
+        <% if AuthenticationHelper.logged_in?(session) %>
+          <a href='/courses'>My Courses</a>
+          <a href='/logout'>Logout</a><br><br>
+        <% else %>
+          <a href='/login'>Login</a>
+          <a href='/signup'>Signup</a><br><br>
+        <% end %>
         <small>&copy; 2021 <strong>SinatraProjectGradebook</strong></small>
       </footer>
     </div>
