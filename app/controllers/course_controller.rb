@@ -26,12 +26,12 @@ class CourseController < ApplicationController
       if student.save
         @course.students << student
         @course.save
-        flash[:message] = "Course created successfully!"
+        flash[:message] = "Course and new students created successfully!"
         redirect to "/courses/#{@course.id}"
       else
         @course.save
-        flash[:message] = "Course created! New student(s) could not be saved. Name field is required."
-        redirect to '/courses/new'
+        flash[:message] = "Course created!"
+        redirect to "/courses/#{@course.id}"
       end
     else
       flash[:message] = "COURSE NOT CREATED. Name field is required."
