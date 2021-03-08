@@ -1,0 +1,28 @@
+<div class="content">
+<% if AuthenticationHelper.logged_in?(session) && AuthenticationHelper.current_user(session).id == @course.teacher.id %>
+  <h2>Edit <%= @course.name %> - <%= @assignment.name %></h2>
+  <form action="/courses/<%= @course.id %>/assignments/<%= @assignment.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="assignment[name]">Assignment Name:</label>
+    <input type="text" name="assignment[name]" value="<%= @assignment.name %>">
+    <table border="3">
+      <thead>
+        <th>Student</th>
+        <th>Grade</th>
+      </thead>
+      <% if @course.students %>
+        <% @course.students.each do |student| %>
+          <input type="hidden" name="student[][id]" value="<%= student.id %>">
+          <tr>
+            <td><%= student.name %></td>
+            <td><input type="text" name="student[][grade]" value="<%= student.student_assignments.find_by(assignment_id: @assignment.id).grade %>"</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table><br><br>
+    <input type="submit" value="Save Changes">
+  </form>
+<% else %>
+  <p>ERROR: You must be logged in and own this course to view this page.</p>
+<% end %>
+</div>

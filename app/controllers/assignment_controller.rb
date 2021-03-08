@@ -39,9 +39,11 @@ class AssignmentController < ApplicationController
     @assignment = Assignment.find_by(id: params[:id])
     if @assignment.update(params[:assignment])
       @assignment.update(params[:assignment])
-      @course.students.each do |student|
-        if !params[:student][:grade].empty?
-          student.student_assignments.find_by(assignment_id: @assignment.id).grade.update(params[:student][:grade])
+      if !params[:student].empty?
+        i = 0
+        params[:student].each do |s|
+          student = Student.find_by(id: s[:id])
+          student.student_assignments.joins(:assignment).where("assignments.id = ?", @assignment.id).update(grade: s[:grade])
         end
       end
       flash[:message] = "Assignment successfully updated!"
