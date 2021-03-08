@@ -28,7 +28,9 @@ This program allows the teacher (user) to
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Contributing to Sinatra Project Gradebook:
-  Right now, this is a one-woman show. If you have identified a bug/issue or would like to contribute, please contact me via hanreitz@gmail.com . Thanks!
+  Right now, this is a one-woman show. If you have identified a bug/issue
+  or would like to contribute, please contact me via hanreitz@gmail.com .
+  Thanks!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
 This project was written as a part of the Flatiron School program.
