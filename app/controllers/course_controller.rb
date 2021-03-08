@@ -35,6 +35,7 @@ class CourseController < ApplicationController
       end
     else
       flash[:message] = "COURSE NOT CREATED. Name field is required."
+      redirect to '/courses/new'
     end
   end
 

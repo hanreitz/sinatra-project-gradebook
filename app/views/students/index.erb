@@ -1,0 +1,25 @@
+<div class="content">
+  <% if AuthenticationHelper.logged_in?(session) %>
+    <h2>Students</h2>
+    <p>Click on a student name to edit or delete the record.</p>
+      <table border="3">
+        <thead>
+          <th>Name</th>
+          <th>Grade Level</th>
+          <th>Contact</th>
+          <th>Phone</th>
+        </thead>
+        <% Student.all.each do |s| %>
+          <tr>
+            <td><a href='/students/<%= s.id %>'><%= s.name %></a></td>
+            <td><%= s.grade_level %></td>
+            <td><%= s.contact_name %></td>
+            <td><%= s.contact_phone %></td>
+          </tr>
+        <% end %>
+      </table><br><br>
+    <a href='/students/new'><button>Add New Student</button></a><br><br>
+  <% else %>
+    <p>There has been an error. You must be logged in to view this page.</p>
+  <% end %>
+</div>

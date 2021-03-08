@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a New Student</h2>
+    <p>Please enter the information below to create a new student. Name is required.</p>
+
+    <div class="content">
+      <form action='/students' method="POST">
+        <label for="student[name]">Name:</label>
+        <input type = "text" name="student[name]"><br>
+        <label for="student[grade_level]">Grade Level:</label>
+        <input type="text" name="student[grade_level]"><br>
+        <label for="student[contact_name]">Contact Name:</label>
+        <input type="text" name="student[contact_name]"><br>
+        <label for="student[contact_phone]">Contact Phone:</label>
+        <input type="text" name="student[contact_phone]"><br><br>
+
+        <input type="submit" value="Create Student"><br>
+      </form><br>
+
+    </div>
+
+  </div>
+</div>
