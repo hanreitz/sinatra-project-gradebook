@@ -1,3 +1,5 @@
+<div class="content">
+<% if AuthenticationHelper.logged_in?(session) %>
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
     <h2>Add a New Student</h2>
@@ -20,4 +22,8 @@
     </div>
 
   </div>
+</div>
+<% else %>
+  <p>ERROR: You must be logged in and own this course to view this page.</p>
+<% end %>
 </div>

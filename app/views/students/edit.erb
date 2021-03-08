@@ -1,0 +1,30 @@
+<div class="content">
+  <% if AuthenticationHelper.logged_in?(session) %>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <h2>Edit Student</h2>
+        <p>Please enter the information below to edit student. Name is required.</p>
+
+        <div class="content">
+          <form action='/students/<%= @student.id %>' method="POST">
+            <input type="hidden" name="_method" value="PATCH">
+            <label for="student[name]">Name:</label>
+            <input type = "text" name="student[name]" value="<%= @student.name %>"><br>
+            <label for="student[grade_level]">Grade Level:</label>
+            <input type="text" name="student[grade_level]" value="<%= @student.grade_level %>"><br>
+            <label for="student[contact_name]">Contact Name:</label>
+            <input type="text" name="student[contact_name]" value="<%= @student.contact_name %>"><br>
+            <label for="student[contact_phone]">Contact Phone:</label>
+            <input type="text" name="student[contact_phone]" value="<%= @student.contact_phone %>"><br><br>
+
+            <input type="submit" value="Save Changes"><br>
+          </form><br>
+
+        </div>
+
+      </div>
+    </div>
+  <% else %>
+    <p>ERROR: You must be logged in and own this course to view this page.</p>
+  <% end %>
+</div>
