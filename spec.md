@@ -25,7 +25,8 @@ Specs:
   # Each object has required inputs that are validated, e.g., teacher email or student name
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
   # Validation failures are sent back to try again with a flash[:message] about the failure, e.g., not using a valid email upon signup returns the user to '/signup' with the flash[:message] "Signup failed. All fields are required."
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+  # README updated to include description, installation instructions, and a contributors guide. License file is viewable from root directory.
 
 Confirm
 - [ ] You have a large number of small Git commits
