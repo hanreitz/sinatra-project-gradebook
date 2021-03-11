@@ -64,8 +64,13 @@ class ApplicationController < Sinatra::Base
 
   get '/:id/edit' do
     @teacher = Teacher.find_by(id: params[:id])
-    if @teacher && AuthenticationHelper.current_user(session).id == @teacher.id
-      erb :edit
+    if @teacher
+      if AuthenticationHelper.current_user(session).id != @teacher.id
+        flash[:message] = "You are not authorized to make changes to another teacher's account."
+        redirect '/'
+      else
+        erb :edit
+      end
     else
       flash[:message] = "No such teacher."
       redirect '/'
