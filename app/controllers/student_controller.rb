@@ -10,7 +10,12 @@ class StudentController < ApplicationController
 
   get '/:id' do
     @student = Student.find_by(id: params[:id])
-    erb :'students/show'
+    if @student
+      erb :'students/show'
+    else
+      flash[:message] = "No such student."
+      redirect '/students'
+    end
   end
 
   get '/:id/edit' do
