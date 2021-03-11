@@ -54,6 +54,7 @@ class ApplicationController < Sinatra::Base
 
   get '/logout' do
     session.clear
+    flash[:message] = "You have successfully logged out."
     redirect "/"
   end
 
@@ -63,7 +64,12 @@ class ApplicationController < Sinatra::Base
 
   get '/:id/edit' do
     @teacher = Teacher.find_by(id: params[:id])
-    erb :edit
+    if @teacher && AuthenticationHelper.current_user(session).id == @teacher.id
+      erb :edit
+    else
+      flash[:message] = "No such teacher."
+      redirect '/'
+    end
   end
 
   patch '/:id' do
