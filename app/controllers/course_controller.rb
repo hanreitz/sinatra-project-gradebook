@@ -10,12 +10,22 @@ class CourseController < ApplicationController
 
   get '/courses/:id' do
     @course = Course.find_by(id: params[:id])
-    erb :'courses/show'
+    if AuthenticationHelper.current_user(session).courses.include?(@course)
+      erb :'courses/show'
+    else
+      flash[:message] = "You may not view courses you do not own."
+      redirect '/courses'
+    end
   end
 
   get '/courses/:id/edit' do
     @course = Course.find_by(id: params[:id])
-    erb :'courses/edit'
+    if AuthenticationHelper.current_user(session).courses.include?(@course)
+      erb :'courses/edit'
+    else
+      flash[:message] = "You may not edit courses you do not own."
+      redirect '/courses'
+    end
   end
 
   post '/courses' do
